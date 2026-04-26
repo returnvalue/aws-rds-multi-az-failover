@@ -31,8 +31,7 @@ The system implements a production-ready database tier:
     ```bash
     terraform init
     terraform apply -auto-approve
-    
-```
+    ```
 
 ## Verification & Testing
 
@@ -42,16 +41,14 @@ To test the database resilience:
     ```bash
     awslocal rds describe-db-instances --db-instance-identifier <YOUR_DB_ID>
     aws rds describe-db-instances --db-instance-identifier <YOUR_DB_ID>
-    
-```
+    ```
     Confirm that `MultiAZ` is `true` and check the `SecondaryAvailabilityZone`.
 
 2.  **Manually Take a Snapshot:**
     ```bash
     awslocal rds create-db-snapshot --db-instance-identifier <YOUR_DB_ID> --db-snapshot-identifier manual-snapshot-1
     aws rds create-db-snapshot --db-instance-identifier <YOUR_DB_ID> --db-snapshot-identifier manual-snapshot-1
-    
-```
+    ```
 
 3.  **Simulate Failover (Conceptual):**
     In a live AWS environment, you can use `reboot-db-instance` with the `force-failover` flag to test the automated failover mechanism.
